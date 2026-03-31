@@ -2,7 +2,7 @@
 # Vul hier de naam van je programma in:
 #
 #
-# Vul hier jullie namen in:
+# Vul hier jullie namen in: Jules
 #
 #
 #
