@@ -26,6 +26,10 @@ def maakTabellenAan():
 
 print("Tabel 'tbl_pizzas' aangemaakt.") 
 
+def printTabel(tabel1): 
+    cursor.execute("SELECT * FROM " + tabel1) #SQL om ALLE gegevens te halen 
+    opgehaalde_gegevens = cursor.fetchall() #sla gegevens op in een variabele 
+    print("Tabel " + tabel1 + ":", opgehaalde_gegevens) #druk gegevens af 
 
 ### --------- Hoofdprogramma  ---------------
 
