@@ -33,3 +33,4 @@ def printTabel(tabel1):
 
 ### --------- Hoofdprogramma  ---------------
 
+printTabel("tbl_pizzas") 
