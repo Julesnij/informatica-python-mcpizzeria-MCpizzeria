@@ -22,15 +22,44 @@ def maakTabellenAan():
         CREATE TABLE IF NOT EXISTS tbl_pizzas( 
             gerechtID INTEGER PRIMARY KEY AUTOINCREMENT, 
             gerechtNaam TEXT NOT NULL, 
-            gerechtPrijs REAL NOT NULL);""") 
+            gerechtPrijs REAL NOT NULL)
+    ;""") 
+    cursor.execute(""" 
+        CREATE TABLE IF NOT EXISTS tbl_klanten( 
+            klantNr INTEGER PRIMARY KEY AUTOINCREMENT, 
+            klantAchternaam TEXT);
+    """) 
 
-print("Tabel 'tbl_pizzas' aangemaakt.") 
 
-def printTabel(tabel1): 
-    cursor.execute("SELECT * FROM " + tabel1) #SQL om ALLE gegevens te halen 
+def printTabel(tabel_naam): 
+    cursor.execute("SELECT * FROM " + tabel_naam) #SQL om ALLE gegevens te halen 
     opgehaalde_gegevens = cursor.fetchall() #sla gegevens op in een variabele 
-    print("Tabel " + tabel1 + ":", opgehaalde_gegevens) #druk gegevens af 
+    print("Tabel " + tabel_naam + ":", opgehaalde_gegevens) #druk gegevens af 
+
+def voegPizzaToe(naam_nieuwe_pizza, prijs_nieuwe_pizza): 
+    cursor.execute("INSERT INTO tbl_pizzas VALUES(NULL, ?, ? )", (naam_nieuwe_pizza, prijs_nieuwe_pizza)) 
+    db.commit() #gegevens naar de database wegschrijven 
+
+def verwijderPizza(gerechtNaam): 
+    cursor.execute("DELETE FROM tbl_pizzas WHERE gerechtNaam = ?", (gerechtNaam,)) 
+    print("Gerecht verwijderd uit 'tbl_pizzas':", gerechtNaam ) 
+    db.commit() #gegevens naar de database wegschrijven 
+
+def pasGerechtAan(gerechtID, nieuweGerechtNaam, nieuwePrijs): 
+    cursor.execute("UPDATE tbl_pizzas SET gerechtNaam = ?, gerechtPrijs = ? WHERE gerechtID = ?", (nieuweGerechtNaam, nieuwePrijs, gerechtID )) 
+    db.commit() #gegevens naar de database wegschrijven 
 
 ### --------- Hoofdprogramma  ---------------
 
+maakTabellenAan()
+
+voegPizzaToe("Margarita", 9.50)
+voegPizzaToe("Hawaii", 12.25)
+voegPizzaToe("Salami", 10.0)
+
+verwijderPizza("Hawaii")
+
+pasGerechtAan(3, "Salamiiii", 19.25)
+
+print("Pizza toegevoegd:") 
 printTabel("tbl_pizzas") 
