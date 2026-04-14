@@ -49,6 +49,12 @@ def pasGerechtAan(gerechtID, nieuweGerechtNaam, nieuwePrijs):
     cursor.execute("UPDATE tbl_pizzas SET gerechtNaam = ?, gerechtPrijs = ? WHERE gerechtID = ?", (nieuweGerechtNaam, nieuwePrijs, gerechtID )) 
     db.commit() #gegevens naar de database wegschrijven 
 
+
+def voegKlantToe(naam_nieuwe_klant):  
+    cursor.execute("INSERT INTO tbl_klanten VALUES(NULL, ?, ?)", (naam_nieuwe_klant,)) 
+    db.commit() 
+
+
 ### --------- Hoofdprogramma  ---------------
 
 maakTabellenAan()
@@ -61,5 +67,8 @@ verwijderPizza("Hawaii")
 
 pasGerechtAan(3, "Salamiiii", 19.25)
 
-print("Pizza toegevoegd:") 
+
 printTabel("tbl_pizzas") 
+
+
+printTabel("tbl_klanten") 
