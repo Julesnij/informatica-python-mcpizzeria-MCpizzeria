@@ -30,7 +30,6 @@ def maakTabellenAan():
             klantAchternaam TEXT);
     """) 
 
-
 def printTabel(tabel_naam): 
     cursor.execute("SELECT * FROM " + tabel_naam) #SQL om ALLE gegevens te halen 
     opgehaalde_gegevens = cursor.fetchall() #sla gegevens op in een variabele 
@@ -51,24 +50,22 @@ def pasGerechtAan(gerechtID, nieuweGerechtNaam, nieuwePrijs):
 
 
 def voegKlantToe(naam_nieuwe_klant):  
-    cursor.execute("INSERT INTO tbl_klanten VALUES(NULL, ?, ?)", (naam_nieuwe_klant,)) 
+    cursor.execute("INSERT INTO tbl_klanten VALUES(NULL, ?)", (naam_nieuwe_klant,)) 
+    print("Klant toegevoegd")
     db.commit() 
 
 
 ### --------- Hoofdprogramma  ---------------
 
+#verwijderTabellen()
 maakTabellenAan()
 
 voegPizzaToe("Margarita", 9.50)
 voegPizzaToe("Hawaii", 12.25)
 voegPizzaToe("Salami", 10.0)
 
-verwijderPizza("Hawaii")
-
-pasGerechtAan(3, "Salamiiii", 19.25)
-
+voegKlantToe("Coum")
+voegKlantToe("Paramaribo")
 
 printTabel("tbl_pizzas") 
-
-
 printTabel("tbl_klanten") 
