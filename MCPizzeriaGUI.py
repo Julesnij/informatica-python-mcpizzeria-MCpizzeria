@@ -57,6 +57,12 @@ knopSluit.grid(row=17, column=4)
 knopZoekOpKlantnaam = Button(venster, text="Zoek klant", width=12, command= zoekKlant)
 knopZoekOpKlantnaam.grid(row=1, column=4)
 
+labelPizza = Label(venster, text="Pizza:") 
+labelPizza.grid(row=3, column=0, sticky="W") 
+
+invoerveldPizza = Entry(venster) 
+invoerveldPizza.grid(row=3, column=1, sticky="W") 
+
 listboxMenu = Listbox(venster, height=6, width=50)
 listboxMenu.grid(row=4, column= 1, rowspan=6, columnspan=2, sticky="W")
 
