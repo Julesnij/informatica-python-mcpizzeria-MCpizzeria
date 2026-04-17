@@ -57,6 +57,8 @@ knopSluit.grid(row=17, column=4)
 knopZoekOpKlantnaam = Button(venster, text="Zoek klant", width=12, command= zoekKlant)
 knopZoekOpKlantnaam.grid(row=1, column=4)
 
+listboxMenu = Listbox(venster, height=6, width=50)
+listboxMenu.grid(row=4, column= 1, rowspan=6, columnspan=2, sticky="W")
 
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
