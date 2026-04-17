@@ -51,6 +51,17 @@ def toonMenuInListbox():
         listboxMenu.insert(END, regel) #voeg elke regel uit resultaat in listboxMenu  
     listboxMenu.insert(0, "ID Gerecht Prijs") 
 
+### functie voor het selecteren van een rij uit de listbox en deze in een andere veld te plaatsen
+def haalGeselecteerdeRijOp(event): 
+    #bepaal op welke regel er geklikt is 
+    geselecteerdeRegelInLijst = listboxMenu.curselection()[0]  
+    #haal tekst uit die regel 
+    geselecteerdeTekst = listboxMenu.get(geselecteerdeRegelInLijst)  
+    #verwijder tekst uit veld waar je in wilt schrijven, voor het geval er al iets staat 
+    invoerveldGekozenPizza.delete(0, END)  
+    #zet tekst in veld 
+    invoerveldGekozenPizza.insert(0, geselecteerdeTekst)  
+
 ### --------- Hoofdprogramma  ---------------
 
 venster = Tk()
@@ -88,12 +99,24 @@ invoerveldPizza.grid(row=3, column=1, sticky="W")
 
 listboxMenu = Listbox(venster, height=6, width=50)
 listboxMenu.grid(row=4, column= 1, rowspan=6, columnspan=2, sticky="W")
+listboxMenu.bind('<<ListboxSelect>>', haalGeselecteerdeRijOp) 
 
 knopZoekOpPizza= Button(venster, text="Zoek pizza", width=12, command= zoekPizza)
 knopZoekOpPizza.grid(row=3, column=4)
 
 knopToonPizzas = Button(venster, text="Toon alle pizza’s", width=12, command=toonMenuInListbox) 
 knopToonPizzas.grid(row=4, column=4)
+
+scrollbarpizza = Scrollbar(venster) 
+scrollbarpizza.grid(row=4, column=2, rowspan=6,  sticky="NSE") 
+listboxMenu.config(yscrollcommand=scrollbarpizza.set) 
+scrollbarpizza.config(command=listboxMenu.yview) 
+
+labelGekozenPizza = Label(venster, text="Gekozen pizza:")
+labelGekozenPizza.grid(row=10, column=0, sticky="W")
+
+invoerveldGekozenPizza = Entry(venster, width=50)
+invoerveldGekozenPizza.grid(row=10, column=1, sticky="W")
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
