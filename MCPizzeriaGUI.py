@@ -62,6 +62,19 @@ def haalGeselecteerdeRijOp(event):
     #zet tekst in veld 
     invoerveldGekozenPizza.insert(0, geselecteerdeTekst)  
 
+#voeg de bestelling van klant met gekozen pizza en aantal toe  
+#in de winkelwagentabel 
+#en toon de bestelling in de listbox op het scherm 
+def voegToeAanWinkelWagen(): 
+    klantNr = invoerveldKlantNr.get() 
+    gerechtID = geselecteerdePizza.get() 
+    aantal = aantalGeslecteerdePizza.get() 
+    MCPizzeriaSQL.voegToeAanWinkelWagen(klantNr, gerechtID, aantal ) 
+    winkelwagen_tabel = MCPizzeriaSQL.vraagOpGegevensWinkelWagenTabel() 
+    listboxWinkelwagen.delete(0, END) #listbox eerst even leeg maken 
+    for regel in winkelwagen_tabel: 
+        listboxWinkelwagen.insert(END, regel) 
+
 ### --------- Hoofdprogramma  ---------------
 
 venster = Tk()
@@ -101,6 +114,9 @@ listboxMenu = Listbox(venster, height=6, width=50)
 listboxMenu.grid(row=4, column= 1, rowspan=6, columnspan=2, sticky="W")
 listboxMenu.bind('<<ListboxSelect>>', haalGeselecteerdeRijOp) 
 
+labelMenu = Label(venster, text="Menu:")
+labelMenu.grid(row=4, column=0, sticky="NW")
+
 knopZoekOpPizza= Button(venster, text="Zoek pizza", width=12, command= zoekPizza)
 knopZoekOpPizza.grid(row=3, column=4)
 
@@ -126,8 +142,14 @@ aantalGekozen.set(1)
 optionMenuPizzaAantal = OptionMenu(venster, aantalGekozen, 1,2,3,4,5)
 optionMenuPizzaAantal.grid(row=12, column=1, sticky="W")
 
-knopVoegToe = Button(venster, text="Voeg toe", width=12)
+knopVoegToe = Button(venster, text="Voeg toe", width=12, command=voegToeAanWinkelWagen)
 knopVoegToe.grid(row=12, column=4)
+
+listboxBestelling = Listbox(venster, height=6, width=50)
+listboxBestelling.grid(row=13, column=1)
+
+labelBestelling = Label(venster, text="Bestelling:")
+labelBestelling.grid(row=13, column=0, sticky="NW")
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
