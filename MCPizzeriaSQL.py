@@ -55,6 +55,12 @@ def voegKlantToe(naam_nieuwe_klant):
     db.commit() 
 
 
+#Zoek alle gegevens over klant met ingevoerde naam 
+def zoekKlantInTabel(ingevoerde_klantnaam): 
+    cursor.execute("SELECT * FROM tbl_klanten WHERE klantAchternaam = ?", (ingevoerde_klantnaam,)) 
+    zoek_resultaat = cursor.fetchall() 
+    return zoek_resultaat 
+
 ### --------- Hoofdprogramma  ---------------
 
 #verwijderTabellen()
