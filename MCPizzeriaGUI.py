@@ -41,7 +41,8 @@ invoerveldKlantNr.grid(row=2, column=1, sticky="W")
 knopSluit = Button(venster, text="Sluiten",width=12,command=venster.destroy) 
 knopSluit.grid(row=17, column=4) 
 
-
+knopZoekOpKlantnaam = Button(venster, text="Zoek klant", width=12)
+knopZoekOpKlantnaam.grid(row=1, column=4)
 
 
 
