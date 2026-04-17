@@ -67,13 +67,13 @@ def haalGeselecteerdeRijOp(event):
 #en toon de bestelling in de listbox op het scherm 
 def voegToeAanWinkelWagen(): 
     klantNr = invoerveldKlantNr.get() 
-    gerechtID = geselecteerdePizza.get() 
-    aantal = aantalGeslecteerdePizza.get() 
+    gerechtID = invoerveldGekozenPizza.get() 
+    aantal = aantalGekozen.get() 
     MCPizzeriaSQL.voegToeAanWinkelWagen(klantNr, gerechtID, aantal ) 
     winkelwagen_tabel = MCPizzeriaSQL.vraagOpGegevensWinkelWagenTabel() 
-    listboxWinkelwagen.delete(0, END) #listbox eerst even leeg maken 
+    listboxBestelling.delete(0, END) #listbox eerst even leeg maken 
     for regel in winkelwagen_tabel: 
-        listboxWinkelwagen.insert(END, regel) 
+        listboxBestelling.insert(END, regel) 
 
 ### --------- Hoofdprogramma  ---------------
 
