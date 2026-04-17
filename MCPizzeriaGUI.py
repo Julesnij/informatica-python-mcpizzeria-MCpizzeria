@@ -46,9 +46,10 @@ def zoekPizza():
 
 def toonMenuInListbox(): 
     listboxMenu.delete(0, END)  #maak de listbox leeg 
-    pizza_tabel = MCPizzeriaSQL.vraagOpGegevensPizzaTabel() 
+    pizza_tabel = MCPizzeriaSQL.vraagOpGegevensPizzaTabel()
     for regel in pizza_tabel: 
         listboxMenu.insert(END, regel) #voeg elke regel uit resultaat in listboxMenu  
+    listboxMenu.insert(0, "ID Gerecht Prijs") 
 
 ### --------- Hoofdprogramma  ---------------
 
@@ -82,7 +83,7 @@ labelPizza = Label(venster, text="Pizza:")
 labelPizza.grid(row=3, column=0, sticky="W") 
 
 ingevoerde_pizzanaam = StringVar() 
-invoerveldPizza = Entry(venster, textvariable=ingevoerde_pizzanaamg) 
+invoerveldPizza = Entry(venster, textvariable=ingevoerde_pizzanaam) 
 invoerveldPizza.grid(row=3, column=1, sticky="W") 
 
 listboxMenu = Listbox(venster, height=6, width=50)
