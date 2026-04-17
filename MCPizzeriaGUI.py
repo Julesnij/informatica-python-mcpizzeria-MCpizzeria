@@ -66,6 +66,11 @@ invoerveldPizza.grid(row=3, column=1, sticky="W")
 listboxMenu = Listbox(venster, height=6, width=50)
 listboxMenu.grid(row=4, column= 1, rowspan=6, columnspan=2, sticky="W")
 
+knopZoekOpPizza= Button(venster, text="Zoek pizza", width=12, command= zoekPizza)
+knopZoekOpPizza.grid(row=3, column=4)
+
+knopToonAllePizza= Button(venster, text="Toon alle pizza's:", width=12, command= toonPizzas)
+knopToonAllePizza.grid(row=4, column=4)
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
