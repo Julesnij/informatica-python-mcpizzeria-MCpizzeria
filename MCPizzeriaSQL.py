@@ -58,14 +58,16 @@ def voegKlantToe(naam_nieuwe_klant):
 ### --------- Hoofdprogramma  ---------------
 
 #verwijderTabellen()
-maakTabellenAan()
+#maakTabellenAan()
 
-voegPizzaToe("Margarita", 9.50)
-voegPizzaToe("Hawaii", 12.25)
-voegPizzaToe("Salami", 10.0)
+#Voeg pizza's toe aan tabel: 
+#voegPizzaToe("Margarita", 9.50)
+#voegPizzaToe("Hawaii", 12.25)
+#voegPizzaToe("Salami", 10.0)
 
-voegKlantToe("Coum")
-voegKlantToe("Paramaribo")
+#Voeg klanten toe aan tabel: 
+#voegKlantToe("Coum")
+#voegKlantToe("Paramaribo")
 
 printTabel("tbl_pizzas") 
 printTabel("tbl_klanten") 
