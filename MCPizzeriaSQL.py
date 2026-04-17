@@ -72,6 +72,20 @@ def zoekKlantInTabel(ingevoerde_klantnaam):
 
     return zoek_resultaat 
 
+def zoekPizzaInTabel(ingevoerde_pizzanaam): 
+    cursor.execute("SELECT * FROM tbl_pizzas WHERE gerechtNaam = ?", (ingevoerde_pizzanaam,)) 
+    zoek_resultaat = cursor.fetchall() 
+    if zoek_resultaat == []: #resultaat is leeg, geen gerecht gevonden 
+        print("Geen pizza gevonden met naam", ingevoerde_pizzanaam) 
+
+    return zoek_resultaat 
+
+def vraagOpGegevensPizzaTabel(): 
+    cursor.execute("SELECT * FROM tbl_pizzas") 
+    resultaat = cursor.fetchall() 
+    print("Tabel tbl_pizzas:", resultaat) 
+    return resultaat 
+
 ### --------- Hoofdprogramma  ---------------
 
 #verwijderTabellen()

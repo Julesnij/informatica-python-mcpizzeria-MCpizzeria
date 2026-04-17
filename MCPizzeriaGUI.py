@@ -27,7 +27,28 @@ def zoekKlant():
         #toon klantnummer, de eerste kolom uit het resultaat in de invoerveld 
         invoerveldKlantNr.insert(END, rij[0])  
         #toon klantAchternaam, de tweede kolom uit het resultaat in de invoerveld 
-        invoerveldKlantnaam.insert(END, rij[1])   
+        invoerveldKlantnaam.insert(END, rij[1]) 
+
+def zoekPizza():
+    # haal de ingevoerde pizzanaam op
+    gevonden_pizzas = MCPizzeriaSQL.zoekPizzaInTabel(ingevoerde_pizzanaam.get())
+    
+    print(gevonden_pizzas)  # om te testen
+    
+    # maak de lijst leeg
+    listboxMenu.delete(0, END)
+    
+    # vul de lijst met resultaten
+    for rij in gevonden_pizzas:
+        # bijvoorbeeld: "1 - Margherita - €8.50"
+        tekst = str(rij[0]) + " - " + rij[1] + " - €" + str(rij[2])
+        listboxMenu.insert(END, tekst)
+
+def toonMenuInListbox(): 
+    listboxMenu.delete(0, END)  #maak de listbox leeg 
+    pizza_tabel = MCPizzeriaSQL.vraagOpGegevensPizzaTabel() 
+    for regel in pizza_tabel: 
+        listboxMenu.insert(END, regel) #voeg elke regel uit resultaat in listboxMenu  
 
 ### --------- Hoofdprogramma  ---------------
 
@@ -60,7 +81,8 @@ knopZoekOpKlantnaam.grid(row=1, column=4)
 labelPizza = Label(venster, text="Pizza:") 
 labelPizza.grid(row=3, column=0, sticky="W") 
 
-invoerveldPizza = Entry(venster) 
+ingevoerde_pizzanaam = StringVar() 
+invoerveldPizza = Entry(venster, textvariable=ingevoerde_pizzanaamg) 
 invoerveldPizza.grid(row=3, column=1, sticky="W") 
 
 listboxMenu = Listbox(venster, height=6, width=50)
@@ -69,8 +91,8 @@ listboxMenu.grid(row=4, column= 1, rowspan=6, columnspan=2, sticky="W")
 knopZoekOpPizza= Button(venster, text="Zoek pizza", width=12, command= zoekPizza)
 knopZoekOpPizza.grid(row=3, column=4)
 
-knopToonAllePizza= Button(venster, text="Toon alle pizza's:", width=12, command= toonPizzas)
-knopToonAllePizza.grid(row=4, column=4)
+knopToonPizzas = Button(venster, text="Toon alle pizza’s", width=12, command=toonMenuInListbox) 
+knopToonPizzas.grid(row=4, column=4)
 
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()
