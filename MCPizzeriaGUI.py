@@ -118,5 +118,16 @@ labelGekozenPizza.grid(row=10, column=0, sticky="W")
 invoerveldGekozenPizza = Entry(venster, width=50)
 invoerveldGekozenPizza.grid(row=10, column=1, sticky="W")
 
+labelPizzaAantal = Label(venster, text="Aantal:")
+labelPizzaAantal.grid(row=12, column=0)
+
+aantalGekozen = IntVar()
+aantalGekozen.set(1)
+optionMenuPizzaAantal = OptionMenu(venster, aantalGekozen, 1,2,3,4,5)
+optionMenuPizzaAantal.grid(row=12, column=1, sticky="W")
+
+knopVoegToe = Button(venster, text="Voeg toe", width=12)
+knopVoegToe.grid(row=12, column=4)
+
 #reageert op gebruikersinvoer, deze regel als laatste laten staan
 venster.mainloop()

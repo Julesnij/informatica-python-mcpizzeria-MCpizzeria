@@ -100,5 +100,6 @@ def vraagOpGegevensPizzaTabel():
 #voegKlantToe("Coum")
 #voegKlantToe("Paramaribo")
 
+
 printTabel("tbl_pizzas") 
 printTabel("tbl_klanten") 
